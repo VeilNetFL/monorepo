@@ -71,3 +71,7 @@ Additionally, workers play a crucial role in maintaining network quality through
 
 For the fhe we used [tfhe-rs](https://github.com/zama-ai/tfhe-rs]) and all the techs for node such as lake indexer were provided by near.
 For frontend the encryption was done with wasm compiled tfhe-rs
+
+
+## Roadmap
+- [ ] integration of worker node with worked dashboard and client dashboard

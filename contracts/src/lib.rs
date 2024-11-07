@@ -1,12 +1,17 @@
 pub mod state;
 
+use std::collections::HashMap;
+
 // Find all our documentation at https://docs.near.org
 use near_sdk::{log, near};
+use state::{NetworkState, RequestsState};
 
 // Define the contract structure
 #[near(contract_state)]
 pub struct Contract {
-    greeting: String,
+    network: NetworkState,
+    pub requests: HashMap<u32,RequestsState>,
+    pub current_request_id: u32,
 }
 
 // Define the default, which automatically initializes the contract

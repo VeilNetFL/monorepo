@@ -1,4 +1,4 @@
-use std::{collections::HashMap, str};
+use std::collections::HashMap;
 
 use near_sdk::{near, AccountId};
 
@@ -11,12 +11,13 @@ pub struct NetworkState {
 /// Represents the model training state i.e the workers,the aggregator node
 #[near(serializers = [json,borsh])]
 #[derive(Clone)]
-pub struct ModelState {
+pub struct RequestsState {
     pub status: ModelStatus,
     pub workers: Vec<AccountId>,
     pub datasets: HashMap<AccountId, ModelData>, // the key is the publisher account id
-    pub model_cid: Option<String>,
+    pub model_cid: Vec<String>,
     pub creator: AccountId,
+    pub epochs: u32,
 }
 
 #[near(serializers = [json,borsh])]
@@ -29,7 +30,53 @@ pub struct ModelData {
 #[near(serializers = [json,borsh])]
 #[derive(Clone)]
 pub enum ModelStatus {
-    NotTraining,
+    Pending, // The pending state is that it is waiting for the workers to join
     Training,
     Finished,
+}
+
+// governance structs for adding workers and removing workers
+#[near(serializers = [json,borsh])]
+#[derive(Clone)]
+pub struct Proposal {
+    proposal_id: u32,
+    pub proposal_type: ProposalType,
+    pub creator: AccountId,
+    pub status: ProposalStatus,
+    pub votes: HashMap<AccountId, Vote>,
+    pub for_votes: u32,
+    pub angaist_votes: u32,
+}
+
+#[near(serializers = [json,borsh])]
+#[derive(Clone)]
+pub enum ProposalType {
+    AddWorker(AccountId),
+    RemoveWorker(AccountId),
+    ChangeBaseFee(u32),
+    ChangeStakeAmount(u32)
+}
+
+#[near(serializers = [json,borsh])]
+#[derive(Clone)]
+pub enum ProposalStatus {
+    Pending,
+    Approved,
+    Rejected,
+}
+
+#[near(serializers = [json,borsh])]
+#[derive(Clone)]
+pub enum Vote {
+    For,
+    Against,
+}
+
+#[near(serializers = [json,borsh])]
+#[derive(Clone)]
+pub struct GovernanceState {
+    pub proposals: Vec<Proposal>,
+    pub base_fee: u32,
+    pub admin: AccountId, // admin is responsible for adding and removing workers
+    pub staking_fee: u32,
 }

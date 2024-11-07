@@ -1,3 +1,5 @@
+pub mod state;
+
 // Find all our documentation at https://docs.near.org
 use near_sdk::{log, near};
 

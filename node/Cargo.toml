@@ -1,0 +1,9 @@
+[package]
+name = "node"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+near-account-id = "1.0.0"
+near-crypto = "0.27.0"
+near-fetch = "0.6.0"

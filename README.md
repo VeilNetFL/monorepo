@@ -1,7 +1,7 @@
 # VeilNetFl
 VeilNetFL is a next-generation federated learning platform that empowers organizations and individuals to securely collaborate on machine learning models, preserving data privacy while advancing the collective intelligence of society. By harnessing the power of Fully Homomorphic Encryption (FHE) and decentralized storage, VielNetFL enables secure, privacy-preserving computation while promoting the values of openness, transparency, and contribution to public goods.
 
-## Winner of Near Track in funding the commons!
+### Winner of Near Track in funding the commons!
 ****
 VeiNetFL is dedicated to creating a positive societal impact by treating machine learning as a public good. By fostering open collaborations on critical issues like healthcare, climate change, and financial inclusion, VielNetFL aims to make advanced, high-quality models accessible to the public for collective benefit
 
